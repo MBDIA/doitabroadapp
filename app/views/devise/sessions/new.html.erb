@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="signup-wrapper">
+        <%= image_tag "formz_logo.png", class: "testclass" %>
+
+        <h1>Connectes toi et construis ton parcours à l'étranger !</h1>
+
+        <hr/>
+
+        <%= simple_form_for(resource, as: resource_name,  url: session_path(resource_name)) do |f| %>
+
+        <div class="form-inputs">
+          <%= f.input :email, label: false, placeholder: "Ton email", required: false, autofocus:  true, wrapper_html: { class: 'input-field' }   %>
+          <%= f.input :password, label: false, placeholder: "Mot de passe", required: false,   wrapper_html: { class: 'input-field' } %>
+          <%= f.input :remember_me, label: 'Remember me', input_html: {class: 'remember_me'}, label_html: {class: 'remember_me'}, as: :boolean if   devise_mapping.rememberable? %>
+        </div>
+
+        <div class="form-actions center">
+          <%- if devise_mapping.omniauthable? %>
+            <%- resource_class.omniauth_providers.each do |provider| %>
+              <%= link_to "Se connecter avec #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "facebook_button" %>
+            <% end -%>
+          <% end -%>
+          <input type="submit" name= "commit" value="Connexion" data-disable-with="Login">
+        </div>
+        <br/>
+        <div class="form-alt-actions">
+          <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+            <%= link_to "Inscription", new_registration_path(resource_name), class: "forgetlog" %><br />
+          <% end -%>
+
+          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+            <%= link_to "Mot de passe oublié ?", new_password_path(resource_name), class: "forgetlog" %><br />
+          <% end -%>
+        </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- </div> -->

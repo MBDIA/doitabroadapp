@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="registration-wrapper">
+        <%= image_tag "formz_logo.png", class: "testclass" %>
+
+        <h1>Mot de passe oublié ?</h1>
+
+        <hr/>
+        <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :email, label: false, placeholder: "Ton email", required: true, autofocus: true %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Reinitialiser mon mot de passe" %>
+        </div>
+
+        <% end %>
+        <br/>
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>

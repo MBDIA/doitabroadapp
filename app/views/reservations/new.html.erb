@@ -1,0 +1,30 @@
+<h1 class="text-center">Choisis l'accompagnement qui te convient !</h1>
+<br>
+<div class="row">
+  <div class="card-deck">
+    <% @packs.each do |pack| %>
+    <div class="col-s-12 col-sm-4 card-container">
+      <!-- <div class="container-fluid card-container"> -->
+      <div class="card">
+          <div class="card-block">
+            <h4 class="card-title text-center"><%= pack.name.upcase %></h4>
+            <br>
+            <ul class="card-features">
+              <% pack.features.each do |feature| %>
+              <li><%= feature %></li>
+              <br>
+              <% end %>
+            </ul>
+          </div>
+          <div class="card-footer text-center">
+            <%= form_tag reservations_path do %>
+            <%= hidden_field_tag 'pack_id', pack.id %>
+            <%= submit_tag "#{humanized_money_with_symbol(pack.price)}", class:"btn btn-packs btn-danger", data: { confirm: 'Êtes-vous sûr de vouloir finaliser votre réservation ?' } %>
+            <% end %>
+          </div>
+          <!-- </div> -->
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

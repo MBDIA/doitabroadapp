@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="registration-wrapper">
+        <%= image_tag "formz_logo.png", class: "testclass" %>
+
+        <h1>Inscris toi et construis ton parcours à l'étranger !</h1>
+
+        <hr/>
+
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :first_name, label: false, placeholder: "Prénom", required: true, autofocus: true, wrapper_html: { class: 'input-field' }  %>
+          <%= f.input :last_name, label: false, placeholder: "Nom", required: true, wrapper_html: { class: 'input-field' }  %>
+          <%= f.input :email, label: false, placeholder: "E-mail", required: true, wrapper_html: { class: 'input-field' }  %>
+          <%= f.input :password, label: false, placeholder: "Mot de passe", required: true, hint: ("#{@minimum_password_length} charactères minimum" if @minimum_password_length), wrapper_html: { class: 'input-field' }  %>
+          <%= f.input :password_confirmation, label: false, placeholder: "Confirmer le mot de passe", required: true, wrapper_html: { class: 'input-field' }  %>
+          <div class="uploadpic">
+            <%= f.input :profile_pic, label: 'Photo de profil', class: "inputfile" %>
+            <%= f.input :profile_pic_cache, as: :hidden %>
+          </div>
+        </div>
+
+        <div class="form-actions center">
+          <%- if devise_mapping.omniauthable? %>
+            <%- resource_class.omniauth_providers.each do |provider| %>
+              <%= link_to "S'inscrire avec #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "facebook_button" %>
+            <% end -%>
+          <% end -%>
+          <%= f.button :submit, "Inscription" %>
+          <% end %>
+          <!-- <a class="waves-effect waves-light btn" <%= render "devise/shared/links" %> </a>  -->
+        </div>
+
+        <br/>
+
+        <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+          <%= link_to "Je n'ai pas reçu d'instructions de confirmation", new_confirmation_path(resource_name) %><br />
+        <% end -%>
+      </div>
+    </div>
+  </div>
+</div>

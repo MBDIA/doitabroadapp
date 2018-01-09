@@ -1,0 +1,39 @@
+<div class="navbar-wagon">
+  <a href="/" class="navbar-wagon-brand">
+    <%= image_tag 'formz_logo.png' %>
+  </a>
+  <!-- Right Navigation -->
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
+    <% if current_user %>
+    <% if current_user.admin %>
+    <%= link_to 'Admin', rails_admin_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <% end %>
+    <% if current_user.reservation != nil %>
+    <% if current_user.reservation.payment_status == "paid" %>
+    <%= link_to 'Mon dashboard', tracking_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <% end %>
+    <% end %>
+    <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete, class: "navbar-wagon-item navbar-wagon-link" %>
+    <% avatar_url = current_user.facebook_picture_url || current_user.profile_pic %>
+    <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu"%>
+    <% else %>
+    <%= link_to 'Connexion', new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <%= link_to 'Inscription', new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <% end %>
+  </div>
+
+  <!-- Dropdown appearing on mobile only -->
+  <div class="navbar-wagon-item hidden-md hidden-lg">
+    <div class="dropdown">
+      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+        <% if current_user %>
+        <%= link_to 'Déconnexion', destroy_user_session_path %>
+        <% else %>
+        <%= link_to 'Connexion', new_user_session_path %>
+        <%= link_to 'Inscription', new_user_registration_path %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

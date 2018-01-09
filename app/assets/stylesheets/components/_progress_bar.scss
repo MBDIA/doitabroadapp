@@ -1,0 +1,72 @@
+.visuallyhidden {
+  display: none;
+}
+
+.wizard-progress {
+  list-style: none;
+  list-style-image: none;
+  margin: 20px 0px;
+  padding: 0;
+  margin-top: 50px;
+  display: inline;
+  justify-content: space-between;
+}
+
+.wizard-progress li {
+  float: inherit;
+  margin-left: 120px;
+  text-align: center;
+  position: relative;
+  width: 100px;
+}
+
+.wizard-progress .step-name {
+  display: table-cell;
+  height: 32px;
+  text-align: center;
+  width: 100px;
+}
+
+.wizard-progress .step-name-wrapper {
+  display: table-cell;
+  height: 100%;
+  vertical-align: bottom;
+}
+
+.wizard-progress .step-num {
+  font-size: 20px;
+  font-weight: bold;
+  border: 15px solid #c8c8c8;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.wizard-progress .step-num:after {
+  content: "";
+  background: #c8c8c8;
+  position: absolute;
+  margin-left: 130px;
+  margin-bottom: 80px;
+  height: 15px;
+  width: 100px;
+  bottom: 10px;
+  left: 60px;
+
+}
+
+.wizard-progress li:last-of-type .step-num:after {
+  display: none;
+}
+
+.wizard-progress .active-step .step-num {
+  border: 15px solid #00b365;
+}
+
+.wizard-progress .active-step .step-num:after {
+  background: #00b365;
+}

@@ -1,0 +1,31 @@
+<div id="wrapper" class="toggled">
+
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li><%= link_to "Mon suivi", tracking_path %></li>
+      <li><%= link_to "Mon profil", profile_path %></li>
+      <li><%= link_to "Mes suggestions", suggestions_path %></li>
+      <li><%= link_to "Mon logement", accomodations_path %></li>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <div class="row welcome">
+        <h3> Bonjour <%= current_user.first_name %> ! </h3>
+      </div>
+      <a href="#menu-toggle" class="btn btn-sidebar" id="menu-toggle">Menu</a>
+      <div class="container">
+        <% if @reservation.pack.sku != 'premium' %>
+        <div class="row text-center">
+          <h4 class="text-center">Tu veux être sûr(e) de trouver un toît ?</h4>
+          <p class='center-align'>Avec le pack premium, nous nous occupons aussi de ton logement !</p>
+          <p class='center-align'>Tu peux modifier à tout moment ta réservation.</p>
+          <%= link_to 'Modifier ma formule !', edit_reservation_path(@reservation), class: 'btn btn-sidebar' %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+  </div>

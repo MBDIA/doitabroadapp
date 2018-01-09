@@ -1,0 +1,13 @@
+.welcome {
+  height: 50px;
+  border-bottom: 3px solid $formz_red;
+  display: flex;
+  align-items: center;
+
+  h3 {
+    margin-left: 40px;
+    font-size: 40px;
+    color: $formz_red;
+    padding-bottom: 30px;
+  }
+}

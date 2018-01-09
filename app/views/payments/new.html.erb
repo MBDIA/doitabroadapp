@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row text-center">
+    <h4 class="text-center">Récapitulatif de réservation</h4>
+    <p class='center-align'>Votre réservation a été effectuée ! Si vous souhaitez la modifier, cliquez sur 'Changer de formule'.</p>
+    <p class='center-align'>No worries mate ! Toutes vos informations pourront être modifiées plus tard, même la formule choisie. Elle est pas belle la vie ?</p>
+  </div>
+  <div class="row padded">
+    <div class="col-xs-12 centered marged">
+      <div class="card">
+        <div class="card-block">
+          <h4 class="card-title text-center"><%= @pack.name.upcase %></h4>
+          <br>
+          <ul class="card-features">
+            <% @pack.features.each do |feature| %>
+            <li><%= feature %></li>
+            <br>
+            <% end %>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </br>
+  <div class="col-xs-12 marged text-center">
+    <%= form_tag reservation_payments_path(@reservation) do %>
+    <article>
+      <label class="amount">
+        <span>Total : <%= humanized_money_with_symbol(@reservation.amount) %></span>
+      </label>
+    </article>
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-name="Ma réservation"
+    data-email="<%= current_user.email %>"
+    data-description="Réservation pour le pack <%= @reservation.pack_sku %>"
+    data-amount="<%= @reservation.amount_cents %>"
+    data-currency="<%= @reservation.amount.currency %>"></script>
+
+    <% end %>
+    <br>
+    <%= link_to 'Changer de formule', edit_reservation_path(@reservation) %>
+  </div>
+</div>
+</div>

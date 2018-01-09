@@ -1,0 +1,96 @@
+<div id="wrapper" class="toggled">
+
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li><%= link_to "Mon suivi", tracking_path %></li>
+      <li><%= link_to "Mon profil", profile_path %></li>
+      <li><%= link_to "Mes suggestions", suggestions_path %></li>
+      <li><%= link_to "Mon logement", accomodations_path %></li>
+  </div>
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <div class="row welcome">
+      <h3> Bonjour <%= current_user.first_name %> ! </h3>
+    </div>
+    <a href="#menu-toggle" class="btn btn-sidebar" id="menu-toggle">Menu</a>
+    <div class="container-fluid">
+      <br>
+      <% if @reservation.pack.sku == "starter" %>
+        <div class="row text-center">
+            <h4 class="text-center">Tu veux que nous nous occupions de tout ?</h4>
+            <p class='text-center'>Avec le pack Starter Plus, nous gérons tes inscriptions.</p>
+            <p class='text-center'>Encore mieux, avec le pack Starter Premium, nous nous occupons aussi de ton logement !</p>
+            <p class='text-center'>Si tu veux modifier ta réservation, c'est par là...</p>
+            <%= link_to 'Modifier ma formule !', edit_reservation_path(@reservation), class: 'btn btn-sidebar' %>
+        </div>
+      <% else %>
+        <% if @reservation.tracking_status == "paid" %>
+        <div class="row text-center">
+            <h4 class="text-center">La prochaine étape...</h4>
+            <p class='text-center'>Pour pouvoir te conseiller au mieux, nous voulons apprendre à te connaître.</p>
+            <p class='text-center'>Pour cela, rien de tel qu'une conversation de vive voix !</p>
+            <%= link_to 'Je réserve un rendez-vous Skype !', "https://calendly.com/doitabroad/rendez-vous-telephonique", target: "_blank", class: "btn btn-sidebar" %>
+        </div>
+        <% end %>
+        <div class="row">
+          <ol class="wizard-progress text-center">
+
+        <div class="col-xs-12 col-md-2">
+        <% if @reservation.tracking_status == 'paid' || @reservation.tracking_status == 'meeting' || @reservation.tracking_status == 'suggestion' || @reservation.tracking_status == 'choice' || @reservation.tracking_status == 'inscription' %>
+        <li class="active-step">
+          <% else %>
+          <li>
+            <% end %>
+            <span class="visuallyhidden">Step </span><span class="step-num">Paiement</span>
+          </li>
+        </div>
+
+        <div class="col-xs-12 col-md-2">
+        <% if @reservation.tracking_status == 'meeting' || @reservation.tracking_status == 'suggestion' || @reservation.tracking_status == 'choice' || @reservation.tracking_status == 'inscription' %>
+        <li class="active-step">
+          <% else %>
+          <li>
+            <% end %>
+            <span class="visuallyhidden">Step </span><span class="step-num">Orientation</span>
+          </li>
+          </div>
+
+          <div class="col-xs-12 col-md-2">
+        <% if @reservation.tracking_status == 'suggestion' || @reservation.tracking_status == 'choice' || @reservation.tracking_status == 'inscription' %>
+        <li class="active-step">
+          <% else %>
+          <li>
+            <% end %>
+            <span class="visuallyhidden">Step </span><span class="step-num">Propositions</span>
+          </li>
+        </div>
+
+        <div class="col-xs-12 col-md-2">
+        <% if @reservation.tracking_status == 'choice' || @reservation.tracking_status == 'inscription' %>
+        <li class="active-step">
+          <% else %>
+          <li>
+            <% end %>
+            <span class="visuallyhidden">Step </span><span class="step-num">Choix de l'école</span>
+          </li>
+          </div>
+
+          <div class="col-xs-12 col-md-2">
+          <% if @reservation.tracking_status == 'inscription' %>
+          <li class="active-step">
+            <% else %>
+            <li>
+              <% end %>
+              <span class="visuallyhidden">Step </span><span class="step-num">Inscription</span>
+            </li>
+          </div>
+        </ol>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+</div>

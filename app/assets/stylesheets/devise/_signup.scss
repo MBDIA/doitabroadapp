@@ -1,0 +1,61 @@
+.signup-wrapper {
+  text-align: center;
+  margin-top: 10%;
+  h1 {
+    text-align: center;
+    color: $formz_red;
+  }
+  hr {
+    height: 5px;
+    width: 80%;
+    background-color: $formz_red;
+  }
+  input {
+    width: 60%;
+    display: block;
+    color: #597379;
+    margin : 0 auto;
+    border: 2px solid $formz_red;
+  }
+  .form-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin: auto;
+    input {
+      background-color: $formz_red;
+      border-radius: 2px;
+      color: white;
+      width: auto;
+      height: 27px;
+    }
+  }
+  .form-alt-actions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 60%;
+    margin: 10px auto;
+  }
+  .facebook_button {
+    background-color: $fbblue;
+    color: white;
+    padding: 0 7px;
+    height: 27px;
+    line-height: 27px;
+    text-decoration: none;
+    border-radius: 2px;
+  }
+  .form-inputs {
+    text-align: center;
+  }
+  .checkbox label{
+    width: 60%;
+    display: block;
+    margin : 0 auto;
+    display: flex;
+    align-items: center;
+    padding-left: 15%;
+  }
+}

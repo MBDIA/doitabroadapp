@@ -1,0 +1,49 @@
+<div id="wrapper" class="toggled">
+
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li><%= link_to "Mon suivi", tracking_path %></li>
+      <li><%= link_to "Mon profil", profile_path %></li>
+      <li><%= link_to "Mes suggestions", suggestions_path %></li>
+      <li><%= link_to "Mon logement", accomodations_path %></li>
+  </div>
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <div class="row welcome">
+      <h3> Bonjour <%= current_user.first_name %> ! </h3>
+    </div>
+    <a href="#menu-toggle" class="btn btn-sidebar" id="menu-toggle">Menu</a>
+    <div class="container-fluid">
+      <% if @user.suggestion == nil %>
+        <div class="row text-center">
+            <h4 class="text-center">Tes informations ont été enregistrées !</h4>
+            <p class='center-align'>Nous établissons une liste de suggestion par rapport aux informations que tu as envoyé.</p>
+            <p class='center-align'>Tu recevras un mail dès qu'elle sera disponible !</p>
+        </div>
+      <% else %>
+      <div class="container-fluid">
+      <div class="row">
+        <% @diplomas.each do |diploma| %>
+        <% unless diploma == nil %>
+        <div class="col-xs-12">
+          <div class="card-suggestions" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= diploma.diploma_photo.url(:standard) %>');">
+            <div class="card-category"><%= diploma.discipline %></div>
+            <div class="card-description">
+              <h2><%= diploma.country %></h2>
+              <p><%= diploma.city %></p>
+            </div>
+            <%= link_to "", diploma.program_website, target: "_blank", class: "card-link" %>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+</div>

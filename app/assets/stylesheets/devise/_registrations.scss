@@ -1,0 +1,48 @@
+.registration-wrapper {
+  text-align: center;
+  margin-top: 10%;
+  h1 {
+    text-align: center;
+    color: $formz_red;
+  }
+  hr {
+    height: 5px;
+    width: 80%;
+    background-color: $formz_red;
+  }
+  input {
+    width: 60%;
+    display: block;
+    color: #597379;
+    margin : 0 auto;
+    border: 2px solid $formz_red;
+  }
+  .form-actions input {
+    background-color: $formz_red;
+    border-radius: 2px;
+    color: white;
+    width: auto;
+  }
+
+  .remember_me {
+    width: 100%;
+  }
+  .form-inputs {
+    text-align: center;
+  }
+  #user_profile_pic {
+    text-align: center;
+    border: none;
+  }
+  .uploadpic input {
+  }
+  .facebook_button {
+    background-color: $fbblue;
+    color: white;
+    padding: 0 7px;
+    height: 27px;
+    line-height: 27px;
+    text-decoration: none;
+    border-radius: 2px;
+  }
+}

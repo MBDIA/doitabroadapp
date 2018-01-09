@@ -1,0 +1,28 @@
+.edit-headtitle {
+  color: $formz_red;
+  text-align: center;
+}
+.edit-form input, .edit-form select, .edit-form textarea {
+  color: #597379;
+}
+
+.edit-form label {
+  color: $labelgray;
+}
+
+.edit-form {
+  border: 1px solid #DDD;
+  border-radius: 3px;
+  padding: 13px;
+  margin: 5px 0;
+}
+
+.submitbutton input {
+  background-color: $formz_red;
+  color: white;
+  width: auto;
+}
+
+.submitbutton {
+  text-align: center;
+}

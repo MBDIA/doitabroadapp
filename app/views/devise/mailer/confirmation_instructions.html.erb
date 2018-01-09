@@ -1,0 +1,9 @@
+<p>Bienvenue <%= @email %>!</p>
+
+<p>Votre demande d'inscription a bien été prise en compte. Pour vérifier votre adresse mail et compléter votre inscription, cliquez sur le lien ci-dessous :</p>
+
+<p><%= link_to 'Vérifier mon adresse mail', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p> Bonne journée ! </p>
+
+<p>L'équipe Do It Abroad</p>

@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 class="edit-headtitle">Afin d'obtenir les universités qui te correspondent le mieux, remplis ton profil !</h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <div class="edit-form">
+          <%= simple_form_for @user, :url => create_user_info_path, :method => :post do |f| %>
+          <%= f.error_notification %>
+
+          <%= f.input :first_name, required: true, autofocus: true, label: "Prénom" %>
+          <%= f.input :last_name, required: true, label: "Nom" %>
+          <%= f.input :birthday, :as=> 'string' ,:label => 'Date de naissance', input_html: { class: 'datepicker' } %>
+          <%= f.input :email, required: true, label: "E-mail" %>
+          <%= f.input :phone_number, required: true, label: "Téléphone" %>
+          <%= f.input :study_level, as: :select, collection: @study_levels, required: true, label: "Niveau d'étude" %>
+          <%= f.input :other_study_level, label: "Si autres, préciser" %>
+          <%= f.input :specialisation, as: :select, collection: @specialisations, label: "Spécialité" %>
+          <%= f.input :other_specialisation, label: "Si autres, préciser" %>
+          <%= f.input :user_diploma,
+                      as: :select,
+                      collection: @user_diplomas,
+                      label: "Diplôme souhaité",
+                      hint: "Nous conseillons aux étudiants en Seconde, Première et Terminale de choisir Licence, aux étudiants en BTS et IUT de choisir Top-up, et aux étudiants en Licence et Master de choisir Master."
+          %>
+          <%= f.input :description, label: "Description de la spécialité recherchée" %>
+          <%= f.input :favourite_pays, as: :select, collection: @pays, label: "Pays préféré (maximum 5)", include_blank: false, include_hidden: false, input_html: { multiple: 'multiple' } %>
+          <%= f.input :budget, collection: @budget, label: "Budget maximum" %>
+          <div class="submitbutton">
+            <%= f.button :submit, "Valider mes informations" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
