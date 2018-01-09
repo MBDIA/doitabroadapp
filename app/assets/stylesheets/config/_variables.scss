@@ -2,9 +2,12 @@
  * Fonts
  * ------------------------------------- */
 // Google fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
-$base-font: "Raleway", "Helvetica", "sans-serif";
-$header-font: "Raleway", "Helvetica", "sans-serif";
+// Import Google fonts
+@import url('https://fonts.googleapis.com/css?family=Dosis|Londrina+Solid|Londrina+Shadow');
+
+// Define fonts for body and headers
+$base-font: 'Dosis', sans-serif;
+$header-font: 'Londrina Solid', cursive;
 
 // Local fonts (uncomment following lines)
 // @font-face {
@@ -27,15 +30,15 @@ $base-height: 1.4;
 $brand-color: #D23333;
 
 
-$gray: #E1F5F2;
+$gray: #414547;
 $green: #6BC5D2;
-$blue: #112351;
+$blue: #49AFEA;
 $purple: #390050;
 $black: #2E3B3E;
-$red: #EE5F5B;
+$red: #EC3C5C;
 $orange: #E67E22;
-$yellow: #FDB631;
+$yellow: #F9EB4F;
 
-$formz_red: #DF7D72;
-$fbblue: #3B5998;
+$formz_red: #EC3C5C;
+$fbblue: #49AFEA;
 $labelgray: #999;

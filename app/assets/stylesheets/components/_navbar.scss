@@ -1,6 +1,6 @@
 /* Main navbar */
 .navbar-wagon {
-  background: none;
+  background: $yellow;
   transition: all 0.3s ease;
   height: 70px;
   padding: 0px 30px;
@@ -38,8 +38,8 @@
 
 /* Navbar link */
 .navbar-wagon-link {
-  color: #616668;
-  font-size: 14px;
+  color: $gray;
+  font-size: 20px;
 }
 .navbar-wagon-link:hover {
   color: #da552f;

@@ -1,9 +1,27 @@
+.background-image {
+  background-size: cover;
+  background-position: right;
+
+}
 .signup-wrapper {
+  max-width: 450px;
   text-align: center;
-  margin-top: 10%;
+  background: white;
+  padding: 20px 20px;
+  margin-top: 50px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  margin-bottom: 80px;
   h1 {
     text-align: center;
     color: $formz_red;
+    font-size: 35px;
+  }
+
+  h2 {
+    text-align: center;
+    color: $formz_red;
+    font-size: 25px;
   }
   hr {
     height: 5px;
@@ -17,6 +35,11 @@
     margin : 0 auto;
     border: 2px solid $formz_red;
   }
+  #emoji-form {
+    font-size: 60px;
+    text-align: center;
+  }
+
   .form-actions {
     display: flex;
     justify-content: center;
@@ -59,3 +82,29 @@
     padding-left: 15%;
   }
 }
+
+  .logobleu {
+    width: 380px;
+  }
+
+  .typewriter h1 {
+ overflow: hidden; /* Ensures the content is not revealed until the animation */
+ border-right: .09em solid transparent; /* The typwriter cursor */
+ white-space: nowrap; /* Keeps the content on a single line */
+ margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+ letter-spacing: .06em; /* Adjust as needed */
+ animation:
+   typing 3.5s steps(40, end),
+   blink-caret .45s step-end 4;
+}
+
+@keyframes typing {
+ from { width: 0 }
+ to { width: 90% }
+}
+
+@keyframes blink-caret {
+ from, to { border-color: $red }
+ 60% { border-color: transparent; }
+}
+
