@@ -1,0 +1,476 @@
+Started GET "/" for 127.0.0.1 at 2018-01-09 13:55:46 +0100
+
+PG::ConnectionBad - FATAL:  database "do_it_abroad_development" does not exist
+:
+
+Started POST "/__better_errors/e307d0a3d63cd781/variables" for 127.0.0.1 at 2018-01-09 13:55:46 +0100
+Started POST "/__better_errors/e307d0a3d63cd781/variables" for 127.0.0.1 at 2018-01-09 13:56:26 +0100
+Started POST "/__better_errors/e307d0a3d63cd781/variables" for 127.0.0.1 at 2018-01-09 13:56:26 +0100
+Started POST "/__better_errors/e307d0a3d63cd781/variables" for 127.0.0.1 at 2018-01-09 13:56:27 +0100
+Started POST "/__better_errors/e307d0a3d63cd781/variables" for 127.0.0.1 at 2018-01-09 13:56:28 +0100
+Started GET "/" for 127.0.0.1 at 2018-01-09 13:58:35 +0100
+
+PG::ConnectionBad - FATAL:  database "do_it_abroad_development" does not exist
+:
+
+Started POST "/__better_errors/928ec61eabc70bb8/variables" for 127.0.0.1 at 2018-01-09 13:58:35 +0100
+Started GET "/" for 127.0.0.1 at 2018-01-09 13:58:40 +0100
+
+PG::ConnectionBad - FATAL:  database "do_it_abroad_development" does not exist
+:
+
+Started POST "/__better_errors/5b7aded345a5cc20/variables" for 127.0.0.1 at 2018-01-09 13:58:41 +0100
+  [1m[35m (24.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (23.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2279829907064702370);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (8.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseCreateUsers (20170925145333)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (19.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170925145333"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateReservations (20170925153131)
+  [1m[35m (5.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (21.7ms)[0m  [1m[35mCREATE TABLE "reservations" ("id" serial primary key, "tracking_status" character varying DEFAULT 'Pending', "payment_status" character varying DEFAULT 'Unpaid', "skype_meeting" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170925153131"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePacks (20170925155312)
+  [1m[35m (12.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (13.7ms)[0m  [1m[35mCREATE TABLE "packs" ("id" serial primary key, "name" character varying, "price" integer, "description" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170925155312"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateDiplomas (20170925155723)
+  [1m[35m (11.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (14.8ms)[0m  [1m[35mCREATE TABLE "diplomas" ("id" serial primary key, "name" character varying, "type" character varying, "discipline" character varying, "program_website" character varying, "country" character varying, "city" character varying, "university" character varying, "tution_fees" integer, "tution_fees_period" character varying, "degree_length" integer, "degree_length_period" character varying, "delivery_mode" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170925155723"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateSuggestions (20170925160037)
+  [1m[35m (12.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (12.6ms)[0m  [1m[35mCREATE TABLE "suggestions" ("id" serial primary key, "diploma_one_id" integer, "diploma_two_id" integer, "diploma_three_id" integer, "diploma_four_id" integer, "diploma_five_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170925160037"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddOmniauthToUsers (20170925161528)
+  [1m[35m (13.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (12.5ms)[0m  [1m[35mALTER TABLE "users" ADD "provider" character varying[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "users" ADD "uid" character varying[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "facebook_picture_url" character varying[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "first_name" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "last_name" character varying[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "users" ADD "token" character varying[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "token_expiry" timestamp[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170925161528"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddInfosToUsers (20170926072253)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "phone_number" integer[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "birthday" timestamp[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "study_level" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "specialisation" character varying[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "diploma" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "description" text[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "favourite_pays" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "budget" character varying[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170926072253"]]
+  [1m[35m (5.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddForeginKeysToReservations (20170926080028)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "reservations" ADD "user_id" integer[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE  INDEX  "index_reservations_on_user_id" ON "reservations"  ("user_id")[0m
+  [1m[35m (25.0ms)[0m  [1m[35mALTER TABLE "reservations" ADD CONSTRAINT "fk_rails_48a92fce51"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "reservations" ADD "pack_id" integer[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  "index_reservations_on_pack_id" ON "reservations"  ("pack_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "reservations" ADD CONSTRAINT "fk_rails_a88f2c7f3a"
+FOREIGN KEY ("pack_id")
+  REFERENCES "packs" ("id")
+[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "reservations" ADD "diploma_id" integer[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  "index_reservations_on_diploma_id" ON "reservations"  ("diploma_id")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "reservations" ADD CONSTRAINT "fk_rails_d0b0cd75c2"
+FOREIGN KEY ("diploma_id")
+  REFERENCES "diplomas" ("id")
+[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170926080028"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddPricesToPacks (20170926081437)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (30.3ms)[0m  [1m[35mALTER TABLE "packs" ADD "price_cents" integer DEFAULT 0 NOT NULL[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170926081437"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddSkuToPacks (20170926090536)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "packs" ADD "sku" character varying[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170926090536"]]
+  [1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddPackSkuToReservations (20170926090808)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "reservations" ADD "pack_sku" character varying[0m
+  [1m[35m (24.2ms)[0m  [1m[35mALTER TABLE "reservations" ADD "amount_cents" integer DEFAULT 0 NOT NULL[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "reservations" ADD "payment" json[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170926090808"]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangePhoneNumberDataTypeInUsers (20170926094410)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (32.8ms)[0m  [1m[35mALTER TABLE "users" ALTER COLUMN "phone_number" TYPE character varying[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170926094410"]]
+  [1m[35m (10.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeBirthdayDataTypeInUsers (20170926094743)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (32.8ms)[0m  [1m[35mALTER TABLE "users" ALTER COLUMN "birthday" TYPE date[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170926094743"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeDiplomaColumnNameInUsers (20170926103243)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.8ms)[0m  [1m[35mALTER TABLE "users" RENAME COLUMN "diploma" TO "user_diploma"[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170926103243"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddAdminToUsers (20170926154730)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (25.5ms)[0m  [1m[35mALTER TABLE "users" ADD "admin" boolean DEFAULT 'f'[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170926154730"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeTypeInDiplomas (20170926171038)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "diplomas" RENAME COLUMN "type" TO "diploma_type"[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170926171038"]]
+  [1m[35m (6.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddUserReferenceToSuggestions (20170926174428)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "suggestions" ADD "user_id" integer[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE  INDEX  "index_suggestions_on_user_id" ON "suggestions"  ("user_id")[0m
+  [1m[35m (2.0ms)[0m  [1m[35mALTER TABLE "suggestions" ADD CONSTRAINT "fk_rails_e40b042562"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170926174428"]]
+  [1m[35m (11.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddConfirmableToDevise (20170929125015)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "users" ADD "confirmation_token" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "confirmed_at" timestamp[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "confirmation_sent_at" timestamp[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_confirmation_token" ON "users"  ("confirmation_token")[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "users" SET "confirmed_at" = '2018-01-09 13:01:20.810340'[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170929125015"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddProfilePicToUser (20171002120222)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "users" ADD "profile_pic" character varying[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171002120222"]]
+  [1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeFavouritePaysToArrayInUser (20171002130613)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (30.8ms)[0m  [1m[35mALTER TABLE "users" ALTER COLUMN "favourite_pays" TYPE varchar[] USING (string_to_array(favourite_pays, ','))[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171002130613"]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangePaymentTypeInReservations (20171002134809)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "reservations" ALTER COLUMN "payment" TYPE json[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171002134809"]]
+  [1m[35m (11.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to RemoveDiplomaReferenceFromReservations (20171003074928)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.3ms)[0m  [1m[35mALTER TABLE "reservations" DROP "diploma_id"[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171003074928"]]
+  [1m[35m (9.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddDriveIdToDiplomas (20171003075345)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "diplomas" ADD "google_sheets_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171003075345"]]
+  [1m[35m (11.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddAttachmentsToUsers (20171003091328)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "users" ADD "passport_file_name" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "passport_content_type" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "passport_file_size" integer[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "passport_updated_at" timestamp[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "resume_file_name" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "resume_content_type" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "resume_file_size" integer[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "resume_updated_at" timestamp[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "motivation_letter_file_name" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "motivation_letter_content_type" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "motivation_letter_file_size" integer[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "motivation_letter_updated_at" timestamp[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "marks_file_name" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "marks_content_type" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "marks_file_size" integer[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "users" ADD "marks_updated_at" timestamp[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "users" ADD "others_file_name" character varying[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "others_content_type" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "others_file_size" integer[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "others_updated_at" timestamp[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171003091328"]]
+  [1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddPaidAmountToUsers (20171003115042)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (28.5ms)[0m  [1m[35mALTER TABLE "users" ADD "paid_amount" integer DEFAULT 0[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171003115042"]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddStatusToSuggestions (20171003224603)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (26.9ms)[0m  [1m[35mALTER TABLE "suggestions" ADD "status" character varying DEFAULT 'unotified'[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171003224603"]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddFeaturesToPacks (20171004014950)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (20.9ms)[0m  [1m[35mALTER TABLE "packs" ADD "features" character varying[] DEFAULT '{}'[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171004014950"]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddDiplomaPhotoToDiploma (20171004064703)
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "diplomas" ADD "diploma_photo" character varying[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171004064703"]]
+  [1m[35m (7.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddOthersToUsers (20171010102656)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "other_study_level" character varying[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "other_specialisation" character varying[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171010102656"]]
+  [1m[35m (6.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUserData (20171123154436)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (25.1ms)[0m  [1m[35mCREATE TABLE "user_data" ("id" serial primary key, "phone_number" character varying, "birthday" character varying, "study_level" character varying, "specialisation" character varying, "user_diploma" character varying, "description" character varying, "favourite_pays" character varying, "budget" character varying, "passport_file_name" character varying, "passport_content_type" character varying, "passport_file_size" integer, "passport_updated_at" timestamp, "resume_file_name" character varying, "resume_content_type" character varying, "resume_file_size" integer, "resume_updated_at" timestamp, "motivation_letter_file_name" character varying, "motivation_letter_content_type" character varying, "motivation_letter_file_size" integer, "motivation_letter_updated_at" timestamp, "marks_file_name" character varying, "marks_content_type" character varying, "marks_file_size" integer, "marks_updated_at" timestamp, "others_file_name" character varying, "others_content_type" character varying, "others_file_size" integer, "others_updated_at" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171123154436"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to RemoveUserInfosFromUsers (20171123154854)
+  [1m[35m (11.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "users" DROP "phone_number"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "birthday"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" DROP "study_level"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" DROP "specialisation"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" DROP "user_diploma"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" DROP "description"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "favourite_pays"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "budget"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "passport_file_name"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "passport_content_type"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "passport_file_size"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "passport_updated_at"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "resume_file_name"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "resume_content_type"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" DROP "resume_file_size"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" DROP "resume_updated_at"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "motivation_letter_file_name"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "motivation_letter_content_type"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "motivation_letter_file_size"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "motivation_letter_updated_at"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "marks_file_name"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "marks_content_type"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "marks_file_size"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "marks_updated_at"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" DROP "others_file_name"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "others_content_type"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "others_file_size"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "others_updated_at"[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171123154854"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddRowToUserData (20171123155334)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "user_data" ADD "other_study_level" character varying[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "user_data" ADD "other_specialisation" character varying[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171123155334"]]
+  [1m[35m (12.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to RemoveRowFromUsers (20171123155343)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" DROP "other_specialisation"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "other_study_level"[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171123155343"]]
+  [1m[35m (5.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddReferencesToUserData (20171123161932)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "user_data" ADD "user_id" integer[0m
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE  INDEX  "index_user_data_on_user_id" ON "user_data"  ("user_id")[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171123161932"]]
+  [1m[35m (15.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to RemoveConfirmableFromDevise (20171204085420)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" DROP "confirmation_token"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "confirmed_at"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" DROP "confirmation_sent_at"[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171204085420"]]
+  [1m[35m (6.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-01-09 13:01:21.220211"], ["updated_at", "2018-01-09 13:01:21.220211"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2279829907064702370)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (13.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/" for 127.0.0.1 at 2018-01-09 14:01:30 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#tracking as HTML
+Completed 401 Unauthorized in 20ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-01-09 14:01:30 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (20630.1ms)
+  Rendered shared/_flashes.html.erb (0.5ms)
+  Rendered shared/_navbar.html.erb (1.5ms)
+Completed 200 OK in 20719ms (Views: 20686.0ms | ActiveRecord: 4.8ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2018-01-09 14:01:53 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"DH1KpLGhWjgXMw34ljbswcZs2r0B4epWtqPlI0tOwpUHcqrqR3OsqJ8IM6TEuvKb8dF3PTFjq1mBvaYB5z+saQ==", "user"=>{"email"=>"m@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Connexion"}
+  [1m[36mUser Load (14.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "m@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 20ms (ActiveRecord: 14.2ms)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"DH1KpLGhWjgXMw34ljbswcZs2r0B4epWtqPlI0tOwpUHcqrqR3OsqJ8IM6TEuvKb8dF3PTFjq1mBvaYB5z+saQ==", "user"=>{"email"=>"m@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Connexion"}
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (12.7ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+  Rendered shared/_navbar.html.erb (1.5ms)
+Completed 200 OK in 214ms (Views: 64.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-01-09 14:01:56 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (24.9ms)
+  Rendered shared/_flashes.html.erb (0.9ms)
+  Rendered shared/_navbar.html.erb (2.5ms)
+Completed 200 OK in 91ms (Views: 88.9ms | ActiveRecord: 0.0ms)
+
+
+  [1m[36mSuggestion Load (7.7ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (0.7ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (3.4ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-01-09 14:33:43 +0100
+Started POST "/users/sign_in" for 127.0.0.1 at 2018-01-09 14:33:49 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2o+pMiN+8Utt7WcNNRykUe5JzyHQWzbf1pVV4p1bhifRgEl81awH2+XWWVFnkLoL2fRioeDZd9DhixbAMSro2w==", "user"=>{"email"=>"m@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Connexion"}
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "m@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 21ms (ActiveRecord: 3.4ms)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2o+pMiN+8Utt7WcNNRykUe5JzyHQWzbf1pVV4p1bhifRgEl81awH2+XWWVFnkLoL2fRioeDZd9DhixbAMSro2w==", "user"=>{"email"=>"m@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Connexion"}
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (52.6ms)
+  Rendered shared/_flashes.html.erb (1.1ms)
+  Rendered shared/_navbar.html.erb (2.5ms)
+Completed 200 OK in 262ms (Views: 129.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-01-09 14:33:51 +0100
+  [1m[36mSuggestion Load (0.6ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (0.5ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (0.5ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (1.1ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (1.6ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (0.7ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (1.3ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (0.7ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (0.6ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (0.4ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (0.5ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (0.6ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+Started GET "/" for 127.0.0.1 at 2018-01-09 16:41:18 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#tracking as HTML
+Completed 401 Unauthorized in 22ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-01-09 16:41:18 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (849.6ms)
+  Rendered shared/_flashes.html.erb (0.9ms)
+  Rendered shared/_navbar.html.erb (3.2ms)
+Completed 200 OK in 955ms (Views: 926.0ms | ActiveRecord: 5.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2018-01-09 16:41:21 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Q39OzXNalnLVfQkIWvCwP7JXwklOK3eN3blzlWWKts9IcK6DhYhg4l1GN1QIfK5lhepvyX6pNoLqpzC3yfvYMw==", "user"=>{"email"=>"m@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Connexion"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "m@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 8ms (ActiveRecord: 1.0ms)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Q39OzXNalnLVfQkIWvCwP7JXwklOK3eN3blzlWWKts9IcK6DhYhg4l1GN1QIfK5lhepvyX6pNoLqpzC3yfvYMw==", "user"=>{"email"=>"m@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Connexion"}
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (17.7ms)
+  Rendered shared/_flashes.html.erb (0.5ms)
+  Rendered shared/_navbar.html.erb (3.2ms)
+Completed 200 OK in 229ms (Views: 73.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-01-11 15:06:22 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (27.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#tracking as HTML
+Completed 401 Unauthorized in 21ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-01-11 15:06:22 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (936.5ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+  Rendered shared/_navbar.html.erb (2.0ms)
+Completed 200 OK in 1095ms (Views: 1016.7ms | ActiveRecord: 38.4ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2018-01-11 15:06:25 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"R61wfK2gM7NuR2DSp76A6tDhvnMeeoNI15s/Q0MCOoVMopAyW3LFI+Z8Xo71Mp6w51wT8y74wkfghXxh73NUeQ==", "user"=>{"email"=>"m@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Connexion"}
+  [1m[36mUser Load (7.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "m@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 14ms (ActiveRecord: 7.7ms)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"R61wfK2gM7NuR2DSp76A6tDhvnMeeoNI15s/Q0MCOoVMopAyW3LFI+Z8Xo71Mp6w51wT8y74wkfghXxh73NUeQ==", "user"=>{"email"=>"m@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Connexion"}
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (26.0ms)
+  Rendered shared/_flashes.html.erb (0.7ms)
+  Rendered shared/_navbar.html.erb (2.1ms)
+Completed 200 OK in 263ms (Views: 104.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2018-01-11 15:06:27 +0100
+Started POST "/users/sign_in" for 127.0.0.1 at 2018-01-11 15:06:32 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8W3BhL58NZ56iv7ZMlM4G8mU0i2I/yyM3xc88y3AO3b6YiHKSK7DDvKxwIVg3yZB/il/rbh9bYPoCX/RgbFVig==", "user"=>{"email"=>"m@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Connexion"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "m@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.6ms)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8W3BhL58NZ56iv7ZMlM4G8mU0i2I/yyM3xc88y3AO3b6YiHKSK7DDvKxwIVg3yZB/il/rbh9bYPoCX/RgbFVig==", "user"=>{"email"=>"m@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Connexion"}
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (14.0ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+  Rendered shared/_navbar.html.erb (1.4ms)
+Completed 200 OK in 198ms (Views: 61.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2018-01-11 15:06:47 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gzY0nQSf1Y1oqKYs1eCXF/H8smlVV4ATtEnPWvwrEiqIOdTT8k0jHeCTmHCHbIlNxkEf6WXVwRyDV4x4UFp81g==", "user"=>{"email"=>"info@do-it-abroad.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Connexion"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "info@do-it-abroad.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.5ms)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gzY0nQSf1Y1oqKYs1eCXF/H8smlVV4ATtEnPWvwrEiqIOdTT8k0jHeCTmHCHbIlNxkEf6WXVwRyDV4x4UFp81g==", "user"=>{"email"=>"info@do-it-abroad.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Connexion"}
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (12.0ms)
+  Rendered shared/_flashes.html.erb (0.6ms)
+  Rendered shared/_navbar.html.erb (1.4ms)
+Completed 200 OK in 191ms (Views: 57.1ms | ActiveRecord: 0.0ms)
+
+
+  [1m[36mSuggestion Load (25.3ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (0.3ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (0.3ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (0.5ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (0.5ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
+  [1m[36mSuggestion Load (0.3ms)[0m  [1m[34mSELECT "suggestions".* FROM "suggestions"[0m
